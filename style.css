@@ -259,7 +259,7 @@ nav.mobile-menu a {
 
 /* About Us Section */
 .about-us {
-    padding: 3em;
+    padding: 2em;
 }
 
 .about-us-content {
@@ -277,6 +277,10 @@ nav.mobile-menu a {
     max-width: 100%;
     border-radius: 8px;
 }
+.about-us p {
+    text-align: justify;
+}
+
 
 .about-us-text {
     flex: 1;
