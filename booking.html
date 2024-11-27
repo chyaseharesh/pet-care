@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book an Appointment - Cairnsville Veterinary Care</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <header>
         <div class="logo">Pet Veterinary Care</div>
@@ -40,10 +42,10 @@
 
     <section class="booking-form-section">
         <h2>Schedule Your Visit</h2>
-        <p>Fill out the form below to schedule an appointment for your pet. We will contact you to confirm the details.</p>
+        <p>Fill out the form below to schedule an appointment for your pet. We will contact you to confirm the details.
+        </p>
 
         <form id="bookingForm">
-            <!-- Owner's Information -->
             <fieldset>
                 <legend>Owner's Information</legend>
                 <label for="name">Full Name:</label>
@@ -109,22 +111,50 @@
     </footer>
     <script src="script.js"></script>
     <script>
-        document.getElementById('bookingForm').addEventListener('submit', function(event) {
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const petName = document.getElementById('petName').value.trim();
-    const petType = document.getElementById('petType').value.trim();
-    const service = document.getElementById('service').value.trim();
-    const date = document.getElementById('date').value.trim();
-    const time = document.getElementById('time').value.trim();
-
-    if (!name || !email || !phone || !petName || !petType || !service || !date || !time) {
-        alert("Please fill out all required fields.");
-        event.preventDefault();
-    }
-});
-
+        document.getElementById('bookingForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const petName = document.getElementById('petName').value.trim();
+            const petType = document.getElementById('petType').value.trim();
+            const service = document.getElementById('service').value.trim();
+            const date = document.getElementById('date').value.trim();
+            const time = document.getElementById('time').value.trim();
+    
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            const phonePattern = /^\d{10}$/;
+            const namePattern = /^[a-zA-Z\s]{2,}$/;
+    
+            if (!name || !email || !phone || !petName || !petType || !service || !date || !time) {
+                alert("Please fill out all required fields.");
+                event.preventDefault();
+                return;
+            }
+    
+            if (!namePattern.test(name)) {
+                alert("Please enter a valid name (at least 2 characters, letters only).");
+                event.preventDefault();
+                return;
+            }
+    
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address.");
+                event.preventDefault();
+                return;
+            }
+    
+            if (!phonePattern.test(phone)) {
+                alert("Please enter a valid 10-digit phone number.");
+                event.preventDefault();
+                return;
+            }
+    
+            // If all validations pass, redirect to success page
+            window.location.href = 'booking-confirm.html';
+        });
     </script>
+    
 </body>
+
 </html>
